@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ved2k12</title>
+  <meta name="description" content="Portfolio & projects">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #ff6b3d;
+      --bg: #0f0f15;
+      --surface: #181822;
+      --surface-2: #20202d;
+      --border: #2a2a3a;
+      --text: #ececf3;
+      --muted: #9a9ab0;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      background-image:
+        radial-gradient(circle at 15% 0%, color-mix(in srgb, var(--accent) 18%, transparent) 0, transparent 40%),
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: auto, 48px 48px, 48px 48px;
+      background-attachment: fixed;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+
+    /* ---------- Hero ---------- */
+    header { padding: 88px 0 56px; }
+    .hero { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+    .avatar {
+      width: 112px; height: 112px; border-radius: 22px; object-fit: cover;
+      border: 2px solid var(--accent);
+      box-shadow: 6px 6px 0 color-mix(in srgb, var(--accent) 35%, transparent);
+      background: var(--surface);
+    }
+    .hero h1 { font-size: clamp(2.4rem, 7vw, 4rem); line-height: 1; letter-spacing: -0.03em; }
+    .tagline {
+      font-family: "JetBrains Mono", monospace; color: var(--accent);
+      font-size: .95rem; margin-top: 10px;
+    }
+    .tagline::before { content: "> "; opacity: .6; }
+    .bio { color: var(--muted); max-width: 620px; margin-top: 22px; font-size: 1.05rem; }
+
+    .socials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .social {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 14px; border-radius: 999px;
+      background: var(--surface); border: 1px solid var(--border);
+      font-size: .9rem; transition: .18s;
+    }
+    .social img { width: 16px; height: 16px; }
+    .social:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    /* ---------- Projects ---------- */
+    section { padding: 24px 0 72px; }
+    .section-title {
+      font-family: "JetBrains Mono", monospace; font-size: .85rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--muted);
+      display: flex; align-items: center; gap: 14px; margin-bottom: 26px;
+    }
+    .section-title::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; display: flex; flex-direction: column; transition: .2s;
+    }
+    .card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 60%, var(--border)); }
+    .thumb { position: relative; aspect-ratio: 16/9; background: var(--surface-2); overflow: hidden; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+    .card:hover .thumb img { transform: scale(1.04); }
+    .status {
+      position: absolute; top: 12px; left: 12px;
+      font-family: "JetBrains Mono", monospace; font-size: .72rem; font-weight: 600;
+      background: rgba(0,0,0,.65); backdrop-filter: blur(6px);
+      padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,.15);
+    }
+    .body { padding: 20px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .body h3 { font-size: 1.3rem; letter-spacing: -0.01em; }
+    .desc { color: var(--muted); font-size: .95rem; flex: 1; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-family: "JetBrains Mono", monospace; font-size: .72rem;
+      color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+      padding: 2px 8px; border-radius: 5px;
+    }
+    .stores { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 6px; }
+    .store {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 12px; border-radius: 9px; font-size: .85rem; font-weight: 500;
+      background: var(--surface-2); border: 1px solid var(--border); transition: .18s;
+    }
+    .store img { width: 15px; height: 15px; }
+    .store:hover { background: var(--accent); border-color: var(--accent); color: #111; }
+    .store:hover img { filter: brightness(0); }
+
+    footer {
+      border-top: 1px solid var(--border); padding: 28px 0;
+      color: var(--muted); font-size: .85rem; font-family: "JetBrains Mono", monospace;
+    }
+    .error { color: #ff8080; padding: 40px 0; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="hero">
+      <img class="avatar" id="avatar" alt="">
+      <div>
+        <h1 id="name"></h1>
+        <div class="tagline" id="tagline"></div>
+      </div>
+    </div>
+    <p class="bio" id="bio"></p>
+    <nav class="socials" id="socials" aria-label="Mạng xã hội"></nav>
+  </header>
+
+  <section class="wrap" id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <footer><div class="wrap" id="footer"></div></footer>
+
+  <script src="config.js"></script>
+  <script>
+    (function () {
+      const cfg = window.SITE_CONFIG;
+      if (!cfg) {
+        document.body.innerHTML = '<p class="wrap error">Không đọc được config.js</p>';
+        return;
+      }
+
+      const STORES = {
+        googleplay: { label: "Google Play", icon: "googleplay" },
+        appstore:   { label: "App Store",   icon: "appstore" },
+        steam:      { label: "Steam",       icon: "steam" },
+        itch:       { label: "itch.io",     icon: "itchdotio" },
+        web:        { label: "Play on Web", icon: "googlechrome" },
+        other:      { label: "Link",        icon: "" }
+      };
+
+      const iconUrl = (slug) => slug ? `https://cdn.simpleicons.org/${slug}/ececf3` : "";
+      const el = (tag, attrs = {}, children = []) => {
+        const n = document.createElement(tag);
+        for (const [k, v] of Object.entries(attrs)) {
+          if (k === "text") n.textContent = v; else if (v != null && v !== "") n.setAttribute(k, v);
+        }
+        children.forEach(c => c && n.appendChild(c));
+        return n;
+      };
+      const iconImg = (slug) => {
+        if (!slug) return null;
+        const img = el("img", { src: iconUrl(slug), alt: "", loading: "lazy" });
+        img.onerror = () => img.remove();
+        return img;
+      };
+      const isExternal = (url) => /^https?:/i.test(url);
+
+      // Hero
+      if (cfg.accentColor) document.documentElement.style.setProperty("--accent", cfg.accentColor);
+      document.title = cfg.name || document.title;
+      document.getElementById("name").textContent = cfg.name || "";
+      document.getElementById("tagline").textContent = cfg.tagline || "";
+      document.getElementById("bio").textContent = cfg.bio || "";
+      const avatar = document.getElementById("avatar");
+      if (cfg.avatar) { avatar.src = cfg.avatar; avatar.alt = cfg.name || ""; } else avatar.remove();
+
+      // Socials
+      const socials = document.getElementById("socials");
+      (cfg.socials || []).forEach(s => {
+        const a = el("a", { class: "social", href: s.url, ...(isExternal(s.url) ? { target: "_blank", rel: "noopener" } : {}) },
+          [iconImg(s.icon), el("span", { text: s.label })]);
+        socials.appendChild(a);
+      });
+
+      // Projects
+      const grid = document.getElementById("grid");
+      (cfg.projects || []).forEach(p => {
+        const thumb = el("div", { class: "thumb" }, [
+          p.image ? el("img", { src: p.image, alt: p.title, loading: "lazy" }) : null,
+          p.status ? el("span", { class: "status", text: p.status }) : null
+        ]);
+        const tags = (p.tags || []).length
+          ? el("div", { class: "tags" }, p.tags.map(t => el("span", { class: "tag", text: t })))
+          : null;
+        const stores = (p.stores || []).length
+          ? el("div", { class: "stores" }, p.stores.map(s => {
+              const meta = STORES[s.type] || STORES.other;
+              return el("a", { class: "store", href: s.url, target: "_blank", rel: "noopener" },
+                [iconImg(meta.icon), el("span", { text: s.label || meta.label })]);
+            }))
+          : null;
+        grid.appendChild(el("article", { class: "card" }, [
+          thumb,
+          el("div", { class: "body" }, [
+            el("h3", { text: p.title }),
+            tags,
+            el("p", { class: "desc", text: p.description || "" }),
+            stores
+          ])
+        ]));
+      });
+
+      document.getElementById("footer").textContent = cfg.footer || "";
+    })();
+  </script>
+</body>
+</html>
